@@ -1,8 +1,9 @@
 .main {
-    border-radius: 5px;
-    box-shadow: 1px 1px 8px 0px #EEEEEE;
-    /* temp */
+    width: 23%;
     margin: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 1px 1px 8px 0px #EEEEEE;
 }
 
 .header {
@@ -15,9 +16,8 @@
 .status {
     width: 10px;
     height: 10px;
-    margin-top:4px;
+    margin-top: 3px;
     border-radius: 50%;
-    background-color: #7CB342;
 }
 
 .title {
@@ -29,19 +29,36 @@
     background-color: gray;
 }
 
+.body>img {
+    width: 100%;
+    object-fit: cover;
+}
+
 .footer {
     display: flex;
-    flex-direction: column;
     padding: 15px 10px;
+    flex-direction: column;
 }
 
 .footer_title {
-    font-weight: bold;
     font-size: 18px;
+    font-weight: bold;
     margin-bottom: 10px;
 }
 
 .footer_subtitle {
-    color: #BDBDBD;
     font-size: 16px;
+    color: #BDBDBD;
+}
+
+@media screen and (max-width: 992px) {
+    .main {
+        width: 46%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main {
+        width: 100%;
+    }
 }

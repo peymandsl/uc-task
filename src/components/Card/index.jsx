@@ -2,16 +2,23 @@ import React from "react";
 
 import styles from "./Card.module.css";
 
-const Card = () => (
+const Card = ({ item }) => (
     <div className={styles.main}>
         <div className={styles.header}>
-            <div className={styles.status}></div>
-            <p className={styles.title}>betcontrast</p>
+            <div
+                className={styles.status}
+                style={{
+                    backgroundColor: item.status ? "#00C853" : "#DD2C00",
+                }}
+            />
+            <p className={styles.title}>{item.category}</p>
         </div>
-        <div className={styles.body}></div>
+        <div className={styles.body}>
+            <img src={item.thumbnail} />
+        </div>
         <div className={styles.footer}>
-            <p className={styles.footer_title}>Fashion Show</p>
-            <p className={styles.footer_subtitle}>video slots</p>
+            <p className={styles.footer_title}>{item.title}</p>
+            <p className={styles.footer_subtitle}>{item.provider}</p>
         </div>
     </div>
 );

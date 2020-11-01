@@ -1,0 +1,19 @@
+.formContainer {
+    margin: 10px;
+    display: flex;
+}
+
+.searchInput, .selectInput {
+    width: 150px;
+    padding: 10px;
+    font-size: 14px;
+    color: #333333;
+    border: 1px solid;
+    margin-right: 15px;
+    border-radius: 5px;
+    background-color: #FAFAF7;
+}
+
+.selectInput:last-child {
+    width: 60px;
+}

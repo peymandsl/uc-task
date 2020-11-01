@@ -1,0 +1,13 @@
+.selectInput {
+    padding: 8px;
+    outline: none;
+    display: flex;
+    font-size: 14px;
+    color: #616161;
+    margin-right: 10px;
+    border-radius: 5px;
+    align-items: center;
+    background-color: #FAFAF7;
+    border: 1px solid #f1f1ec;
+    justify-content: space-between;
+}

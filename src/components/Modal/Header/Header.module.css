@@ -1,0 +1,26 @@
+.header {
+    padding: 10px;
+    position: relative;
+}
+
+.buttons {
+    color: #616161;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.title {
+    color: #616161;
+    text-align: center;
+}
+
+.button {
+    cursor: pointer;
+}
+
+.filters {
+    outline: 1px solid #f1f1ec;
+    padding: 5px 0;
+}
