@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import faker from "faker";
 
@@ -7,8 +7,11 @@ import CATEGORIES from "../constants/CATEGORIES";
 import useMounted from "./useMounted";
 
 const useData = () => {
-    const [data, setData] = useState([]);
     const isMounted = useMounted();
+    const [data, setData] = useState([]);
+    const [category, setCategory] = useState("");
+    const [provider, setProvider] = useState("");
+    const [filteredData, setFilteredData] = useState([]);
 
     const handleGenerateData = useCallback(
         (size) => {
@@ -34,8 +37,64 @@ const useData = () => {
         [isMounted]
     );
 
+    // const generateDataFilter = useCallback((data, type, value) => {
+    //     return data.filter((item) =>
+    //     item[type].toLowerCase().includes(value.toLowerCase())
+    // );
+    // }, [])
+
+    const handleFilter = useCallback(() => {
+        console.log("here");
+        setFilteredData(() => {
+            const originalData = [...data];
+
+            // if (!type || !value) {
+            //     console.log("orginallllll");
+            //     return originalData;
+            // }
+            return originalData.filter(
+                (item) =>
+                    item.category
+                        .toLowerCase()
+                        .includes(category.toLowerCase()) &&
+                    item.provider.toLowerCase().includes(provider.toLowerCase())
+            );
+            // .filter((item) =>
+            //     item.provider
+            //         .toLowerCase()
+            //         .includes(provider.toLowerCase())
+            // );
+            // return originalData.filter((item) =>
+            //     item[type].toLowerCase().includes(value.toLowerCase())
+            // );
+        });
+    }, [data, category, provider]);
+
+    const handleCategory = useCallback(
+        (value) => {
+            isMounted && setCategory(value);
+        },
+        [isMounted]
+    );
+
+    const handleProvider = useCallback(
+        (value) => {
+            isMounted && setProvider(value);
+        },
+        [isMounted]
+    );
+
+    useEffect(() => {
+        handleFilter();
+    }, [handleFilter]);
+
     return {
-        data,
+        handleFilter,
+        setCategory: handleCategory,
+        setProvider: handleProvider,
+        category,
+        provider,
+        data: filteredData,
         handleGenerateData,
     };
 };

@@ -42,7 +42,7 @@ const Global = createGlobalStyle`
 `;
 
 const Button = styled.button`
-    position: relative;
+    // position: fixed;
     background: lightblue;
     padding: 20px;
 `;

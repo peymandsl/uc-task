@@ -1,11 +1,19 @@
 import React from "react";
+
 import { CgClose } from "react-icons/cg";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import SelectInput from "../../form/SelectInput";
 import Tabs from "../../Tabs";
 import styles from "./Header.module.css";
 
-const Header = ({ hanleClose }) => {
+const Header = ({
+    hanleClose,
+    // handleFilter,
+    category,
+    setCategory,
+    setProvider,
+    provider,
+}) => {
     return (
         <>
             <div className={styles.header}>
@@ -17,7 +25,13 @@ const Header = ({ hanleClose }) => {
             </div>
             <div className={styles.filters}>
                 <Tabs />
-                <SelectInput />
+                <SelectInput
+                    // handleFilter={handleFilter}
+                    category={category}
+                    provider={provider}
+                    setCategory={setCategory}
+                    setProvider={setProvider}
+                />
             </div>
         </>
     );

@@ -1,19 +1,16 @@
 import React, { useState, useCallback } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 
-import useData from "../../hooks/useData";
 import styles from "./Cards.module.css";
 import Card from "../Card";
 
-const Cards = () => {
-    const { data, handleGenerateData } = useData();
-
+const Cards = ({ data, handleData }) => {
     return (
         <div className={styles.main}>
             <InfiniteScroll
                 pageStart={0}
                 useWindow={false}
-                loadMore={() => handleGenerateData(10)}
+                loadMore={() => handleData(10)}
                 hasMore={true}
                 loader={
                     <div className="loader" key={0}>
