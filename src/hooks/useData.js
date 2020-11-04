@@ -1,16 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
-
 import faker from "faker";
 
-import PROVIDERS from "../constants/PROVIDERS";
+
 import CATEGORIES from "../constants/CATEGORIES";
+import PROVIDERS from "../constants/PROVIDERS";
 import useMounted from "./useMounted";
 
 const useData = () => {
     const isMounted = useMounted();
     const [data, setData] = useState([]);
-    const [category, setCategory] = useState("");
-    const [provider, setProvider] = useState("");
     const [filteredData, setFilteredData] = useState([]);
 
     const handleGenerateData = useCallback(
@@ -19,14 +17,19 @@ const useData = () => {
                 setData((prevState) => {
                     const prevData = [...prevState];
                     for (let i = 0; i < size; i++) {
-                        const randomIndex = Math.floor(Math.random() * 10);
+                        const randomIndexCategory = Math.floor(
+                            Math.random() * 10
+                        );
+                        const randomIndexProvider = Math.floor(
+                            Math.random() * 10
+                        );
 
                         prevData.push({
                             id: faker.random.uuid(),
                             thumbnail: faker.random.image(),
                             title: faker.name.title(),
-                            category: CATEGORIES[randomIndex],
-                            provider: PROVIDERS[randomIndex],
+                            category: CATEGORIES[randomIndexCategory],
+                            provider: PROVIDERS[randomIndexProvider],
                             status: faker.random.boolean(),
                         });
                     }
@@ -43,46 +46,49 @@ const useData = () => {
     // );
     // }, [])
 
-    const handleFilter = useCallback(() => {
-        console.log("here");
-        setFilteredData(() => {
-            const originalData = [...data];
+    const handleFilter = useCallback(
+        (items) => {
+            // console.log(type, value);
+            setFilteredData(() => {
+                let originalData = [...data];
+                if (!items || Object.values(items).length === 0) {
+                    return originalData;
+                }
 
-            // if (!type || !value) {
-            //     console.log("orginallllll");
-            //     return originalData;
-            // }
-            return originalData.filter(
-                (item) =>
-                    item.category
-                        .toLowerCase()
-                        .includes(category.toLowerCase()) &&
-                    item.provider.toLowerCase().includes(provider.toLowerCase())
-            );
-            // .filter((item) =>
-            //     item.provider
-            //         .toLowerCase()
-            //         .includes(provider.toLowerCase())
-            // );
-            // return originalData.filter((item) =>
-            //     item[type].toLowerCase().includes(value.toLowerCase())
-            // );
-        });
-    }, [data, category, provider]);
+                for (const property in items) {
+                    originalData = originalData.filter((item) =>
+                        item[property]
+                            .toLowerCase()
+                            .includes(items[property].toLowerCase())
+                    );
+                }
 
-    const handleCategory = useCallback(
-        (value) => {
-            isMounted && setCategory(value);
+                return originalData;
+
+                // return originalData.filter(
+                //     (item) =>
+                //         item.category
+                //             .toLowerCase()
+                //             .includes(category.toLowerCase())
+                //     //     &&
+                //     // item.provider.toLowerCase().includes(provider.toLowerCase())
+                // );
+                // .filter((item) =>
+                //     item.provider
+                //         .toLowerCase()
+                //         .includes(provider.toLowerCase())
+                // );
+                // return originalData.filter((item) =>
+                //     item[type].toLowerCase().includes(value.toLowerCase())
+                // );
+            });
         },
-        [isMounted]
+        [data]
     );
 
-    const handleProvider = useCallback(
-        (value) => {
-            isMounted && setProvider(value);
-        },
-        [isMounted]
-    );
+    useEffect(() => {
+        handleGenerateData(10);
+    }, [handleGenerateData]);
 
     useEffect(() => {
         handleFilter();
@@ -90,10 +96,6 @@ const useData = () => {
 
     return {
         handleFilter,
-        setCategory: handleCategory,
-        setProvider: handleProvider,
-        category,
-        provider,
         data: filteredData,
         handleGenerateData,
     };

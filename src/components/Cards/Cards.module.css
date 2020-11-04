@@ -1,9 +1,6 @@
 .main {
-    /* display: flex; */
-    /* flex-wrap: wrap; */
-    padding-top: 10px;
-    background-color: #FAFAF7;
-    /* justify-content: space-between; */
-    height: calc(100vh - 240px);
     overflow-y: auto;
+    padding-top: 10px;
+    height: calc(100vh - 240px);
+    background-color: #FAFAF7;
 }

@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./Tabs.module.css";
 
 const Tabs = () => (
-    <div>
+    <div className={styles.container}>
         <ul>
             <li>Games</li>
             <li>Categories</li>

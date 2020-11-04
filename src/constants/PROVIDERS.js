@@ -1,4 +1,6 @@
-export default [
+export default 
+
+[
     "NetBet",
     "BetOnline",
     "BetWay",

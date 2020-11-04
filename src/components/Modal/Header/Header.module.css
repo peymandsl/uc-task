@@ -4,10 +4,10 @@
 }
 
 .buttons {
+    top: 50%;
+    right: 20px;
     color: #616161;
     position: absolute;
-    right: 20px;
-    top: 50%;
     transform: translateY(-50%);
 }
 
@@ -21,6 +21,6 @@
 }
 
 .filters {
-    outline: 1px solid #f1f1ec;
     padding: 5px 0;
+    outline: 1px solid #f1f1ec;
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import Modal from "../../components/Modal/modal";
 import ModalContainer from "../../components/Modal/Container";
 
 const App = () => (
@@ -10,8 +9,6 @@ const App = () => (
             defaultTitle={process.env.REACT_APP_NAME}
         />
         <ModalContainer />
-
-        {/* <Modal /> */}
     </>
 );
 

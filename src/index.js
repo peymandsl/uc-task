@@ -5,12 +5,8 @@ import reportWebVitals from "./reportWebVitals";
 import "./assets/styles/reset.css";
 import App from "./containers/App";
 import "./index.css";
+import "./custom-scrollbars.css";
 
-ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
-    document.getElementById("root")
-);
+ReactDOM.render(<App />, document.getElementById("root"));
 
 reportWebVitals();

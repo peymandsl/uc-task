@@ -13,9 +13,11 @@ const Card = ({ item }) => (
             />
             <p className={styles.title}>{item.provider}</p>
         </div>
+        
         <div className={styles.body}>
-            <img src={item.thumbnail} />
+            <img alt={item.provider} src={item.thumbnail} />
         </div>
+
         <div className={styles.footer}>
             <p className={styles.footer_title}>{item.title}</p>
             <p className={styles.footer_subtitle}>{item.category}</p>

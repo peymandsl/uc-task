@@ -1,12 +1,12 @@
 export default [
+    "State Lotteries",
+    "Video Poker",
+    "Video Slots",
     "Blackjack",
     "Roulette",
-    "Video Slots",
-    "Craps",
-    "Video Poker",
     "Baccarat",
-    "State Lotteries",
-    "Poker‎",
-    "Rummy‎",
     "Pinball",
+    "Craps",
+    "Rummy‎",
+    "Poker‎",
 ];

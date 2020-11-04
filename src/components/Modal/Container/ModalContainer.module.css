@@ -1,0 +1,19 @@
+.backDrop {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    transition: all 1.3s;
+    background: #e3e3e3;
+}
+
+.btnOpenModal {
+    margin: 2rem;
+    border: none;
+    color: #eee;
+    outline: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: .5rem 1.8rem;
+    background: #2c2c2c;
+}
