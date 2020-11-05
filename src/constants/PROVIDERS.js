@@ -1,14 +1,14 @@
-export default 
-
-[
-    "NetBet",
-    "BetOnline",
+const PROVIDERS = [
+    "VBet",
     "BetWay",
     "Bet365",
-    "Betsafe",
+    "NetBet",
     "UniBet",
-    "VBet",
+    "UniBet",
+    "Betsafe",
     "TonyBet",
     "Betsafe",
-    "UniBet",
+    "BetOnline",
 ];
+
+export default PROVIDERS;

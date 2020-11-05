@@ -5,12 +5,18 @@ import useDebounce from "../../../hooks/useDebounce";
 import styles from "./InputBox.module.css";
 
 const InputBox = ({ placeholder, handleSelectedValue }) => {
-    const debounceValue = useDebounce(value, 300);
     const [value, setValue] = useState("");
+    const [defaultValue, setDefaultValue] = useState("all");
+
+    const debounceValue = useDebounce(defaultValue, 500);
 
     useEffect(() => {
         debounceValue && handleSelectedValue(debounceValue);
     }, [debounceValue, handleSelectedValue]);
+
+    useEffect(() => {
+        setDefaultValue(() => value || "all");
+    }, [value]);
 
     return (
         <div className={styles.inputBox}>

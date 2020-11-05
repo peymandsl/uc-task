@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import styles from "./ModalContainer.module.css";
-import Modal from "../../Modal";
+import styles from "./Home.module.css";
+import Modal from "../Modal";
 
-const ModalContainer = () => {
+const Home = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -26,4 +26,4 @@ const ModalContainer = () => {
     );
 };
 
-export default ModalContainer;
+export default Home;

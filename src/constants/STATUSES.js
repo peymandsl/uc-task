@@ -1,1 +1,3 @@
-export default ["Active", "Deactive"];
+const STATUSES = ["Active", "Deactive"];
+
+export default STATUSES;

@@ -1,32 +1,39 @@
 import React, { useState, useEffect } from "react";
 
+import useMounted from "../../hooks/useMounted";
 import useData from "../../hooks/useData";
 import styles from "./Modal.module.css";
 import Header from "./Header";
 import Body from "./Body";
 
 const Modal = ({ closeHandler, isOpen }) => {
-    const { data, handleFilter, handleGenerateData } = useData();
-    const [category, setCategory] = useState("");
-    const [provider, setProvider] = useState("");
-    const [filters, setFilters] = useState({});
+    const isMounted = useMounted();
     const [search, setSearch] = useState("");
+    const [filters, setFilters] = useState({});
+    const [status, setStatus] = useState("all");
+    const [category, setCategory] = useState("all");
+    const [provider, setProvider] = useState("all");
+    const { data, handleFilter, isLoading, handleGenerateData } = useData();
 
     useEffect(() => {
-        category && setFilters((prevState) => ({ ...prevState, category }));
-    }, [category, setFilters]);
+        setFilters((prevState) => ({ ...prevState, category }));
+    }, [category]);
 
     useEffect(() => {
-        provider && setFilters((prevState) => ({ ...prevState, provider }));
-    }, [provider, setFilters]);
+        setFilters((prevState) => ({ ...prevState, provider }));
+    }, [provider]);
 
     useEffect(() => {
-        search && setFilters((prevState) => ({ ...prevState, title: search }));
-    }, [search, setFilters]);
+        setFilters((prevState) => ({ ...prevState, title: search }));
+    }, [search]);
 
     useEffect(() => {
-        handleFilter(filters);
-    }, [filters, handleFilter]);
+        setFilters((prevState) => ({ ...prevState, status }));
+    }, [status]);
+
+    useEffect(() => {
+        isMounted && handleFilter(filters);
+    }, [filters, isMounted, handleFilter]);
 
     return (
         <div className={styles.container}>
@@ -40,15 +47,21 @@ const Modal = ({ closeHandler, isOpen }) => {
                 }}
             >
                 <Header
-                    hanleClose={closeHandler}
-                    setProvider={setProvider}
-                    setCategory={setCategory}
-                    setSearch={setSearch}
+                    status={status}
+                    search={search}
                     provider={provider}
                     category={category}
-                    search={search}
+                    setStatus={setStatus}
+                    setSearch={setSearch}
+                    setProvider={setProvider}
+                    setCategory={setCategory}
+                    hanleClose={closeHandler}
                 />
-                <Body data={data} handleData={handleGenerateData} />
+                <Body
+                    data={data}
+                    isLoading={isLoading}
+                    handleData={handleGenerateData}
+                />
             </div>
         </div>
     );

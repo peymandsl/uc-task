@@ -1,25 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import InfiniteScroll from "react-infinite-scroller";
 
+import Spinner from "../../components/Spinner";
 import styles from "./Cards.module.css";
 import NotFound from "../NotFound";
 import Card from "../Card";
 
-const Cards = ({ data: test, handleData }) => {
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        setData(test);
-    }, [test]);
-
-    return !data || data.length === 0 ? (
-        <NotFound />
-    ) : (
+const Cards = ({ data, handleData, isLoading }) => {
+    return (
         <div className={styles.main}>
             <InfiniteScroll
                 loadMore={() => handleData(10)}
+                hasMore={!isLoading}
                 useWindow={false}
-                hasMore={true}
                 pageStart={0}
                 loader={
                     <div className="loader" key={0}>
@@ -28,10 +21,17 @@ const Cards = ({ data: test, handleData }) => {
                 }
             >
                 <div style={{ display: "flex", flexWrap: "wrap" }}>
-                    {data.map((item) => (
-                        <Card key={item.id} item={item} />
-                    ))}
+                    {data.length === 0 || !data ? (
+                        <NotFound />
+                    ) : (
+                        data.map((item) => <Card key={item.id} item={item} />)
+                    )}
                 </div>
+                {isLoading && data.length !== 0 && (
+                    <div className={styles.spinner}>
+                        <Spinner />
+                    </div>
+                )}
             </InfiniteScroll>
         </div>
     );

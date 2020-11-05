@@ -1,5 +1,11 @@
 import React from "react";
 
-const NotFound = () => <h1>Not found</h1>;
+import styles from "./NotFound.module.css";
+
+const NotFound = () => (
+    <div className={styles.container}>
+        <h1>No Match Available</h1>
+    </div>
+);
 
 export default NotFound;

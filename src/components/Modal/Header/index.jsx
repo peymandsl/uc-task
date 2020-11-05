@@ -7,16 +7,18 @@ import { CgClose } from "react-icons/cg";
 import Tabs from "../../Tabs";
 
 const Header = ({
-    setProvider,
-    setCategory,
-    hanleClose,
-    setSearch,
+    search,
+    status,
     category,
     provider,
-    search,
+    setSearch,
+    setStatus,
+    hanleClose,
+    setProvider,
+    setCategory,
 }) => {
     return (
-        <>
+        <div className={styles.container}>
             <div className={styles.header}>
                 <p className={styles.title}>CASINO APP</p>
                 <div className={styles.buttons}>
@@ -27,15 +29,17 @@ const Header = ({
             <div className={styles.filters}>
                 <Tabs />
                 <SelectInput
-                    setCategory={setCategory}
-                    setProvider={setProvider}
-                    setSearch={setSearch}
-                    category={category}
-                    provider={provider}
                     search={search}
+                    status={status}
+                    provider={provider}
+                    category={category}
+                    setStatus={setStatus}
+                    setSearch={setSearch}
+                    setProvider={setProvider}
+                    setCategory={setCategory}
                 />
             </div>
-        </>
+        </div>
     );
 };
 

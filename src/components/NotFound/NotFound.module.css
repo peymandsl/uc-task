@@ -1,0 +1,9 @@
+.container {
+    width: 100%;
+    width: 100%;
+    display: flex;
+    font-size: 50px;
+    min-height: 300px;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
-import faker from "faker";
+import { useState, useCallback } from "react";
 
+import faker from "faker";
 
 import CATEGORIES from "../constants/CATEGORIES";
 import PROVIDERS from "../constants/PROVIDERS";
@@ -9,11 +9,16 @@ import useMounted from "./useMounted";
 const useData = () => {
     const isMounted = useMounted();
     const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const [filteredData, setFilteredData] = useState([]);
 
     const handleGenerateData = useCallback(
         (size) => {
             if (isMounted) {
+                setIsLoading(true);
+                setTimeout(() => {
+                    setIsLoading(false);
+                }, 3000);
                 setData((prevState) => {
                     const prevData = [...prevState];
                     for (let i = 0; i < size; i++) {
@@ -40,61 +45,46 @@ const useData = () => {
         [isMounted]
     );
 
-    // const generateDataFilter = useCallback((data, type, value) => {
-    //     return data.filter((item) =>
-    //     item[type].toLowerCase().includes(value.toLowerCase())
-    // );
-    // }, [])
-
     const handleFilter = useCallback(
         (items) => {
-            // console.log(type, value);
-            setFilteredData(() => {
-                let originalData = [...data];
-                if (!items || Object.values(items).length === 0) {
+            if (isMounted) {
+                setFilteredData(() => {
+                    let originalData = [...data];
+                    if (!items || Object.values(items).length === 0) {
+                        return originalData;
+                    }
+
+                    for (const property in items) {
+                        if (property === "status") {
+                            if (items[property] !== "all") {
+                                const isActive =
+                                    items[property] === "Active" ? true : false;
+                                originalData = originalData.filter(
+                                    (item) => item[property] === isActive
+                                );
+                            }
+                        } else {
+                            const val =
+                                items[property] === "all"
+                                    ? ""
+                                    : items[property];
+                            originalData = originalData.filter((item) =>
+                                item[property]
+                                    .toLowerCase()
+                                    .includes(val.toLowerCase())
+                            );
+                        }
+                    }
+
                     return originalData;
-                }
-
-                for (const property in items) {
-                    originalData = originalData.filter((item) =>
-                        item[property]
-                            .toLowerCase()
-                            .includes(items[property].toLowerCase())
-                    );
-                }
-
-                return originalData;
-
-                // return originalData.filter(
-                //     (item) =>
-                //         item.category
-                //             .toLowerCase()
-                //             .includes(category.toLowerCase())
-                //     //     &&
-                //     // item.provider.toLowerCase().includes(provider.toLowerCase())
-                // );
-                // .filter((item) =>
-                //     item.provider
-                //         .toLowerCase()
-                //         .includes(provider.toLowerCase())
-                // );
-                // return originalData.filter((item) =>
-                //     item[type].toLowerCase().includes(value.toLowerCase())
-                // );
-            });
+                });
+            }
         },
-        [data]
+        [data, isMounted]
     );
 
-    useEffect(() => {
-        handleGenerateData(10);
-    }, [handleGenerateData]);
-
-    useEffect(() => {
-        handleFilter();
-    }, [handleFilter]);
-
     return {
+        isLoading,
         handleFilter,
         data: filteredData,
         handleGenerateData,

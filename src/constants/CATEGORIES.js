@@ -1,4 +1,4 @@
-export default [
+const CATEGORIES = [
     "State Lotteries",
     "Video Poker",
     "Video Slots",
@@ -10,3 +10,5 @@ export default [
     "Rummy‎",
     "Poker‎",
 ];
+
+export default CATEGORIES;

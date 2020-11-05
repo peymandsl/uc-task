@@ -8,6 +8,7 @@
 }
 
 .btnOpenModal {
+    z-index: 10;
     margin: 2rem;
     border: none;
     color: #eee;
@@ -16,4 +17,5 @@
     cursor: pointer;
     padding: .5rem 1.8rem;
     background: #2c2c2c;
+    position: relative;
 }

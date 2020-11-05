@@ -4,8 +4,8 @@ import useDebounce from "../../../hooks/useDebounce";
 import styles from "./SelectBox.module.css";
 
 const SelectBox = ({ items, placeholder, handleSelectedValue }) => {
-    const debounceValue = useDebounce(value, 300);
-    const [value, setValue] = useState("");
+    const [value, setValue] = useState("all");
+    const debounceValue = useDebounce(value, 500);
 
     useEffect(() => {
         debounceValue && handleSelectedValue(debounceValue);
@@ -18,9 +18,7 @@ const SelectBox = ({ items, placeholder, handleSelectedValue }) => {
                 className={styles.selectInput}
                 value={value}
             >
-                <option disabled value="">
-                    {placeholder}
-                </option>
+                <option value="all">{placeholder}</option>
 
                 {items.map((item, index) => (
                     <option key={index} value={item}>
