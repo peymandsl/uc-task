@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-
+import PropTypes from "prop-types";
 import styles from "./Card.module.css";
 
 const Card = ({ item }) => (
@@ -25,4 +25,7 @@ const Card = ({ item }) => (
     </div>
 );
 
+Card.prototype = {
+    item: PropTypes.object.isRequired,
+};
 export default memo(Card);

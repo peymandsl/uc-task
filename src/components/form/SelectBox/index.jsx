@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 import useDebounce from "../../../hooks/useDebounce";
 import styles from "./SelectBox.module.css";
@@ -28,6 +29,12 @@ const SelectBox = ({ items, placeholder, handleSelectedValue }) => {
             </select>
         </>
     );
+};
+
+SelectBox.propTypes = {
+    items: PropTypes.array.isRequired,
+    placeholder: PropTypes.string.isRequired,
+    handleSelectedValue: PropTypes.func.isRequired,
 };
 
 export default SelectBox;

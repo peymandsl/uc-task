@@ -3,6 +3,7 @@ import { VscSearch } from "react-icons/vsc";
 
 import useDebounce from "../../../hooks/useDebounce";
 import styles from "./InputBox.module.css";
+import PropTypes from "prop-types";
 
 const InputBox = ({ placeholder, handleSelectedValue }) => {
     const [value, setValue] = useState("");
@@ -29,6 +30,11 @@ const InputBox = ({ placeholder, handleSelectedValue }) => {
             <VscSearch className={styles.searchIcon} />
         </div>
     );
+};
+
+InputBox.propTypes = {
+    placeholder: PropTypes.string.isRequired,
+    handleSelectedValue: PropTypes.func.isRequired,
 };
 
 export default InputBox;

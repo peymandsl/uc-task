@@ -1,5 +1,6 @@
 import React from "react";
 import InfiniteScroll from "react-infinite-scroller";
+import PropTypes, { array } from "prop-types";
 
 import Spinner from "../../components/Spinner";
 import styles from "./Cards.module.css";
@@ -14,11 +15,6 @@ const Cards = ({ data, handleData, isLoading }) => {
                 hasMore={!isLoading}
                 useWindow={false}
                 pageStart={0}
-                loader={
-                    <div className="loader" key={0}>
-                        Loading ...
-                    </div>
-                }
             >
                 <div style={{ display: "flex", flexWrap: "wrap" }}>
                     {data.length === 0 || !data ? (
@@ -37,4 +33,13 @@ const Cards = ({ data, handleData, isLoading }) => {
     );
 };
 
+Card.defaultProps = {
+    data: array,
+};
+
+Cards.propTypes = {
+    data: PropTypes.array,
+    handleData: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+};
 export default Cards;

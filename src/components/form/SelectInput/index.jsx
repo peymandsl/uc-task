@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Categories from "../../../constants/CATEGORIES";
 import Providers from "../../../constants/PROVIDERS";
@@ -19,20 +20,20 @@ const SelectInput = ({
 }) => (
     <div className={styles.container}>
         <InputBox
-            selectedValue={search}
             placeholder="Search"
+            selectedValue={search}
             handleSelectedValue={setSearch}
         />
         <SelectBox
             items={Categories}
-            placeholder="All Category"
             selectedValue={category}
+            placeholder="All Category"
             handleSelectedValue={setCategory}
         />
         <SelectBox
             items={Providers}
-            placeholder="All Providers"
             selectedValue={provider}
+            placeholder="All Providers"
             handleSelectedValue={setProvider}
         />
         <SelectBox
@@ -43,5 +44,16 @@ const SelectInput = ({
         />
     </div>
 );
+
+SelectInput.propTypes = {
+    search: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    provider: PropTypes.string.isRequired,
+    setSearch: PropTypes.func.isRequired,
+    setStatus: PropTypes.func.isRequired,
+    setProvider: PropTypes.func.isRequired,
+    setCategory: PropTypes.func.isRequired,
+};
 
 export default SelectInput;

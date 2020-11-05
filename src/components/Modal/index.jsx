@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 import useMounted from "../../hooks/useMounted";
 import useData from "../../hooks/useData";
@@ -67,4 +68,8 @@ const Modal = ({ closeHandler, isOpen }) => {
     );
 };
 
+Modal.propTypes = {
+    closeHandler: PropTypes.func.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+};
 export default Modal;
